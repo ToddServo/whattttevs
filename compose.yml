@@ -1,0 +1,23 @@
+
+version: '3'
+
+name: "kelso-weather-kreator-container"
+
+services:
+
+  kelso-weather-kreator:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+#####################################################################
+##     We may not need to use an entrypoint to make rust files     ##
+#####################################################################
+#    command: make
+#    entrypoint: /home/app/entrypoint.sh
+    container_name: kelso-weather-kreator-container
+    image: kelso-weather-kreator-rust-image
+    tty: true
+    volumes:
+      - .:/home/app
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
